@@ -14,5 +14,5 @@ export async function signIn({ email, password }: ISignIn) {
     email,
     password,
   });
-  return response.data;
+  return response;
 }

@@ -14,6 +14,7 @@ const useInputState = <T>({ inputState }: IUseInputStateProps<T>) => {
 
   return {
     input,
+    setInput,
     onChangeInputHandler,
   };
 };
