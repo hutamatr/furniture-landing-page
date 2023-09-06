@@ -11,12 +11,15 @@
     "lint:fix": "eslint . --fix && yarn format",
     "lint:strict": "eslint --max-warnings=0 .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./prettier.config.cjs",
-    "format:check": "prettier -c './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./prettier.config.cjs"
+    "format:check": "prettier -c './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./prettier.config.cjs",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "axios": "^1.5.0",
     "clsx": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
@@ -34,6 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "husky": "^8.0.0",
     "lint-staged": "^14.0.1",
     "postcss": "^8.4.29",
     "prettier": "^3.0.3",
