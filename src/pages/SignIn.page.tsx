@@ -1,17 +1,30 @@
 import clsx from 'clsx';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import AuthWrapper from '@components/AuthPage/AuthWrapper';
 import Input from '@components/UI/Input/Input';
 
+import { AuthContext } from '@context/AuthProvider';
 import { signIn } from '@api/api';
 
 import useInputState from '@hooks/useInputState';
 
 export default function SignInPage() {
-  const { input, onChangeInputHandler } = useInputState({
+  const { input, setInput, onChangeInputHandler } = useInputState({
     inputState: { email: '', password: '' },
   });
+  const [status, setStatus] = useState<
+    'idle' | 'pending' | 'fulfilled' | 'rejected'
+  >('idle');
+
+  const { authHandler } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const useDemoAccountHandler = () => {
+    setInput({ email: 'john@mail.com', password: 'changeme' });
+  };
 
   const signInHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,15 +34,27 @@ export default function SignInPage() {
     }
 
     try {
-      await signIn(input);
+      setStatus('pending');
+      const response = await signIn(input);
+      if (response.status === 201) {
+        setStatus('fulfilled');
+        authHandler(response.data);
+        setInput({ email: '', password: '' });
+        navigate('/', { replace: true });
+      }
     } catch (error) {
+      setStatus('rejected');
       // eslint-disable-next-line no-console
       console.error(error);
     }
   };
 
   return (
-    <AuthWrapper authType='Sign In' authDescription='Sign in to your account'>
+    <AuthWrapper
+      authType='Sign In'
+      authDescription='Sign in to your account'
+      onUseDemoAccount={useDemoAccountHandler}
+    >
       <form onSubmit={signInHandler} className='flex flex-col gap-y-4'>
         <Input
           label='Email'
@@ -37,6 +62,7 @@ export default function SignInPage() {
           placeholder='example@gmail.com'
           name='email'
           onChange={onChangeInputHandler}
+          value={input.email}
         />
         <Input
           label='Password'
@@ -44,15 +70,19 @@ export default function SignInPage() {
           placeholder='••••••••'
           name='password'
           onChange={onChangeInputHandler}
+          value={input.password}
         />
         <button
           type='submit'
-          className='block w-full rounded-md bg-black px-4 py-2 font-semibold text-white shadow-md'
+          className='block w-full rounded-md bg-custom-black px-4 py-2 font-semibold text-white shadow-md disabled:cursor-not-allowed disabled:bg-custom-black/80'
+          disabled={status === 'pending'}
         >
-          Sign In
+          {status === 'pending' ? 'Loading...' : 'Sign In'}
         </button>
       </form>
-      <p className={clsx('text-center text-xs', 'md:text-sm')}>
+      <p
+        className={clsx('text-center text-xs text-custom-black', 'md:text-sm')}
+      >
         Don&apos;t have an account?{' '}
         <Link to='/register' className='font-medium underline'>
           Sign Up
