@@ -11,6 +11,7 @@ import { signIn } from '@api/api';
 import useInputState from '@hooks/useInputState';
 
 export default function SignInPage() {
+  const [passwordView, setPasswordView] = useState(false);
   const { input, setInput, onChangeInputHandler } = useInputState({
     inputState: { email: '', password: '' },
   });
@@ -24,6 +25,10 @@ export default function SignInPage() {
 
   const useDemoAccountHandler = () => {
     setInput({ email: 'john@mail.com', password: 'changeme' });
+  };
+
+  const passwordViewHandler = () => {
+    setPasswordView((prevState) => !prevState);
   };
 
   const signInHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -71,7 +76,16 @@ export default function SignInPage() {
           name='password'
           onChange={onChangeInputHandler}
           value={input.password}
+          isPassword
+          onPasswordView={passwordViewHandler}
+          isPasswordView={passwordView}
         />
+        <button
+          className='flex items-center justify-end text-xs text-blue-600 underline'
+          type='button'
+        >
+          forgot password?
+        </button>
         <button
           type='submit'
           className='block w-full rounded-md bg-custom-black px-4 py-2 font-semibold text-white shadow-md disabled:cursor-not-allowed disabled:bg-custom-black/80'
