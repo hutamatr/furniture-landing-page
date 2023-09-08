@@ -13,3 +13,11 @@ export interface IAuthToken {
   access_token: string;
   refresh_token: string;
 }
+
+export interface ICatalog {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+}
