@@ -3,11 +3,9 @@ import { useContext, useState } from 'react';
 import { CgClose, CgMenuRight } from 'react-icons/cg';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
-import Image from '@components/UI/Image/Image';
+import Logo from '@components/UI/Svg/Logo';
 
 import { AuthContext } from '@context/AuthProvider';
-
-import HomeImg from '@assets/image/home.webp';
 
 export default function Navigation() {
   const [menuView, setMenuView] = useState(false);
@@ -28,7 +26,10 @@ export default function Navigation() {
   return (
     <nav className='layout relative flex flex-row items-center justify-between py-4'>
       <Link to='/' replace={true} className='flex items-center gap-x-3'>
-        <Image src={HomeImg} alt='Home Image' imageClassName='w-10' />
+        <Logo
+          className={clsx('w-10 text-custom-black', '2xl:w-12')}
+          fill='currentColor'
+        />
       </Link>
       <div className={clsx('flex flex-row gap-x-6', 'sm:hidden')}>
         <button onClick={menuHandler}>
