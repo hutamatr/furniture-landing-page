@@ -29,10 +29,6 @@
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off",
     "react/display-name": "off",
-    // "react/tsx-curly-brace-presence": [
-    //   "warn",
-    //   { "props": "never", "children": "never" }
-    // ],
 
     //*=========== Unused Import ===========
     "@typescript-eslint/no-unused-vars": "off",
@@ -51,33 +47,14 @@
       "warn",
       {
         "groups": [
-          // Side effect imports.
           ["^\\u0000"],
-
-          // Packages.
-          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
           ["^@?\\w"],
-
-          // components
           ["^@components"],
-
-          // pages
           ["^@pages"],
-
-          // context & api
-          ["^@context", "^@store", "^@api"],
-
-          // hooks & utils
+          ["^@context", "^@api"],
           ["^@hooks", "^@utils"],
-
-          // Other imports
-          // ['^@/'],
           ["^@public", "^@assets"],
-
-          // {s}css files
           ["^.+\\.s?css$"],
-
-          // relative paths up until 3 level
           [
             "^\\./?$",
             "^\\.(?!/?$)",
@@ -88,7 +65,6 @@
             "^\\.\\./\\.\\./\\.\\./?$",
             "^\\.\\./\\.\\./\\.\\.(?!/?$)"
           ],
-
           ["^types"],
           ["^"]
         ]

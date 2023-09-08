@@ -4,16 +4,55 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    font-family: 'Poppins', system-ui, sans-serif;
-  }
+@font-face {
+  font-family: 'Neutral Face';
+  src: url('../src/assets/fonts/NeutralFace.woff2') format('opentype');
+}
 
+@font-face {
+  font-family: 'Neutral Face Bold';
+  src: url('../src/assets/fonts/NeutralFace-Bold.woff2') format('opentype');
+}
+
+html,
+body {
+  -ms-scroll-chaining: none;
+  overscroll-behavior: none;
+}
+
+html {
+  font-family: 'Poppins', system-ui, sans-serif;
+}
+
+body {
+  @apply bg-custom-white-2;
+}
+
+@layer base {
   .layout {
-    @apply ml-auto mr-auto w-[90%] max-w-[68.75rem];
+    @apply mx-auto w-[90%] max-w-[68.75rem];
   }
 
   .grid-12 {
-    @apply grid w-full grid-cols-12;
+    @apply grid grid-cols-12;
   }
+}
+
+::-webkit-scrollbar {
+  width: 0.65rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar:hover {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #24282c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #eae9e2;
+  border-radius: 1rem;
+  border: 2px solid #24282c;
 }
