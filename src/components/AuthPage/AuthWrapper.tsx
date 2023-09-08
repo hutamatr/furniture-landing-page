@@ -1,5 +1,8 @@
 import clsx from 'clsx';
-import { useLocation } from 'react-router-dom';
+import { MdHome } from 'react-icons/md';
+import { Link, useLocation } from 'react-router-dom';
+
+import Image from '@components/UI/Image/Image';
 
 import authBg from '@assets/image/pattern.webp';
 
@@ -20,25 +23,24 @@ export default function AuthWrapper({
 
   return (
     <>
-      <figure
-        className={clsx(
+      <Image
+        src={authBg}
+        alt='auth-background'
+        figureClassName={clsx(
           'hidden',
           'lg:col-start-1 lg:col-end-8 lg:grid lg:w-full lg:place-items-center lg:overflow-hidden lg:py-4'
-          // '2xl:col-start-1'
         )}
-      >
-        <img
-          src={authBg}
-          loading='lazy'
-          alt=''
-          className={clsx('w-full rounded-3xl', 'md:h-full', '2xl:h-[32rem]')}
-        />
-      </figure>
+        imageClassName={clsx('rounded-3xl', 'md:h-full', '2xl:h-[32rem]')}
+        onMotion={{
+          initial: { opacity: 0, x: -16 },
+          animate: { opacity: 1, x: 0, transition: { duration: 0.7 } },
+          exit: { opacity: 0, x: 0 },
+        }}
+      />
       <section
         className={clsx(
           'col-start-1 col-end-13 grid place-items-center',
           'lg:col-start-8 lg:col-end-13'
-          // '2xl:col-start-6'
         )}
       >
         <div
@@ -48,14 +50,24 @@ export default function AuthWrapper({
           )}
         >
           <div className='flex flex-col items-start gap-y-2'>
-            <h1
-              className={clsx(
-                'font-neutral text-2xl font-semibold text-custom-black',
-                'md:text-3xl'
-              )}
-            >
-              {authType}
-            </h1>
+            <div className='flex w-full items-center justify-between'>
+              <h1
+                className={clsx(
+                  'pt-2 font-neutral text-2xl font-semibold text-custom-black',
+                  'md:text-3xl'
+                )}
+              >
+                {authType}
+              </h1>
+              <Link to='/' className='w-fit'>
+                <MdHome
+                  className={clsx(
+                    'h-8 w-8 rounded-full border border-custom-black/50 p-1 text-custom-black',
+                    '2xl:h-9 2xl:w-9'
+                  )}
+                />
+              </Link>
+            </div>
             <div className='flex w-full items-center justify-between'>
               <p className={clsx('text-xs text-custom-black', 'md:text-sm')}>
                 {authDescription}
