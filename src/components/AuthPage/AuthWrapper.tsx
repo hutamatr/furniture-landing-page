@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Image from '@components/UI/Image/Image';
 
-import authBg from '@assets/image/pattern.webp';
+import authBg from '@assets/image/auth-img.webp';
 
 interface IAuthWrapperProps {
   children: React.ReactNode;
@@ -30,7 +30,7 @@ export default function AuthWrapper({
           'hidden',
           'lg:col-start-1 lg:col-end-8 lg:grid lg:w-full lg:place-items-center lg:overflow-hidden lg:py-4'
         )}
-        imageClassName={clsx('rounded-3xl', 'md:h-full', '2xl:h-[32rem]')}
+        imageClassName={clsx('rounded-2xl', 'md:h-full', '2xl:h-[32rem]')}
         onMotion={{
           initial: { opacity: 0, x: -16 },
           animate: { opacity: 1, x: 0, transition: { duration: 0.7 } },

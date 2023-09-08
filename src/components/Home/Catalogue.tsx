@@ -20,7 +20,7 @@ export default function Catalogue() {
         whileInView={'inView'}
         initial={'initial'}
         exit={'exit'}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ duration: 0.5 }}
       >
         Catalogue
       </motion.h1>
@@ -42,7 +42,7 @@ export default function Catalogue() {
             whileInView={'inView'}
             initial={'initial'}
             exit={'exit'}
-            transition={{ duration: 0.7, delay: index * 0.5 }}
+            transition={{ duration: 0.7, delay: index * 0.3 }}
           >
             <Card
               name={item.name}

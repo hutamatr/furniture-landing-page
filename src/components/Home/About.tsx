@@ -20,7 +20,7 @@ export default function About() {
         whileInView={'inView'}
         initial={'initial'}
         exit={'exit'}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ duration: 0.5 }}
       >
         About
       </motion.h1>
@@ -33,7 +33,7 @@ export default function About() {
         whileInView={'inView'}
         initial={'initial'}
         exit={'exit'}
-        transition={{ duration: 0.7, delay: 0.7 }}
+        transition={{ duration: 0.7 }}
       >
         <p className={clsx('text-justify text-sm', 'md:max-w-[50%]')}>
           Carefully curate a diverse range of furniture products to cater to
