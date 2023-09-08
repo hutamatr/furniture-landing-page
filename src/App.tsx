@@ -11,11 +11,10 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
+        <Route path='/' element={<HomePage />} />
         <Route path='login' element={<SignInPage />} />
         <Route path='register' element={<SignUpPage />} />
-        <Route element={<RequireAuth />}>
-          <Route path='/' element={<HomePage />} />
-        </Route>
+        <Route element={<RequireAuth />}></Route>
       </Route>
     </Routes>
   );

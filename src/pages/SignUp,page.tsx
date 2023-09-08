@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthWrapper from '@components/AuthPage/AuthWrapper';
@@ -9,16 +10,22 @@ import { signIn } from '@api/api';
 import useInputState from '@hooks/useInputState';
 
 export default function SignUpPage() {
+  const [passwordView, setPasswordView] = useState(false);
   const { input, onChangeInputHandler } = useInputState({
-    inputState: { username: '', email: '', password: '' },
+    inputState: { username: '', email: '', password: '', confirmPassword: '' },
   });
+
+  const passwordViewHandler = () => {
+    setPasswordView((prevState) => !prevState);
+  };
   const signUpHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (
       input.username.length === 0 ||
       input.email.length === 0 ||
-      input.password.length === 0
+      input.password.length === 0 ||
+      input.confirmPassword.length === 0
     ) {
       return;
     }
@@ -60,6 +67,9 @@ export default function SignUpPage() {
           name='password'
           onChange={onChangeInputHandler}
           value={input.password}
+          isPassword
+          onPasswordView={passwordViewHandler}
+          isPasswordView={passwordView}
         />
         <Input
           label='Confirm Password'
@@ -67,7 +77,8 @@ export default function SignUpPage() {
           placeholder='••••••••'
           name='confirmPassword'
           onChange={onChangeInputHandler}
-          value={input.password}
+          value={input.confirmPassword}
+          isPasswordView={passwordView}
         />
         <button
           type='submit'
