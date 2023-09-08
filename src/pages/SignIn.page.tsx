@@ -60,6 +60,11 @@ export default function SignInPage() {
       authDescription='Sign in to your account'
       onUseDemoAccount={useDemoAccountHandler}
     >
+      {status === 'rejected' && (
+        <p className='text-center text-sm text-red-600'>
+          Login failed! Please check your email and password.
+        </p>
+      )}
       <form onSubmit={signInHandler} className='flex flex-col gap-y-4'>
         <Input
           label='Email'

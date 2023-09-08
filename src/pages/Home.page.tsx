@@ -16,8 +16,7 @@ export default function HomePage() {
   useEffect(() => {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      // eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
-      const locomotiveScroll = new LocomotiveScroll({
+      new LocomotiveScroll({
         lenisOptions: {
           lerp: 0.05,
           smoothWheel: true,
