@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import AuthWrapper from '@components/AuthPage/AuthWrapper';
 import Input from '@components/UI/Input/Input';
 
-import { signIn } from '@api/api';
-
 import useInputState from '@hooks/useInputState';
 
 export default function SignUpPage() {
@@ -29,13 +27,9 @@ export default function SignUpPage() {
     ) {
       return;
     }
-
-    try {
-      await signIn(input);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
+    alert(
+      'Register is not fully implemented yet, please login with demo account'
+    );
   };
 
   return (
